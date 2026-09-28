@@ -1,0 +1,4 @@
+row_a,row_b,score,match_fields,match_type
+7,8,96.6,"email, phone, city, name",Potential
+2,5,91.7,"email, phone, name",Potential
+11,12,87.7,"city, phone, email",Potential

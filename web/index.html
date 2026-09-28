@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MatchLens — Duplicate Record Detection</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+<div class="page-shell">
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-mark">ML</div>
+      <div>
+        <div class="brand-name">MatchLens</div>
+        <div class="brand-sub">Record Intelligence Lab</div>
+      </div>
+    </div>
+    <div class="task-pill">VEDA • TASK 28</div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <div class="eyebrow">DUPLICATE RECORD DETECTION SYSTEM</div>
+        <h1>Find the records that<br><span>look like the same person.</span></h1>
+        <p>Upload a CSV, choose the identity fields, and MatchLens separates exact duplicates from uncertain near-matches without deleting anything automatically.</p>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="orbit orbit-one"></div>
+        <div class="orbit orbit-two"></div>
+        <div class="lens">
+          <div class="lens-glow"></div>
+          <div class="lens-handle"></div>
+        </div>
+        <div class="floating-chip chip-a">EXACT</div>
+        <div class="floating-chip chip-b">FUZZY</div>
+        <div class="floating-chip chip-c">SAFE</div>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <aside class="control-panel">
+        <div class="panel-heading">
+          <span class="step">01</span>
+          <div><h2>Load your data</h2><p>CSV files only</p></div>
+        </div>
+
+        <label class="drop-zone" id="dropZone">
+          <input id="fileInput" type="file" accept=".csv,text/csv">
+          <div class="upload-icon">↑</div>
+          <strong id="fileName">Drop a CSV here</strong>
+          <span>or click to browse</span>
+        </label>
+
+        <div class="panel-heading second">
+          <span class="step">02</span>
+          <div><h2>Choose matching fields</h2><p>At least one field</p></div>
+        </div>
+        <div id="fieldList" class="field-list">
+          <div class="muted-box">Upload a CSV to detect columns.</div>
+        </div>
+
+        <div class="threshold-wrap">
+          <div class="threshold-label">
+            <span>Potential-match threshold</span>
+            <strong id="thresholdValue">82%</strong>
+          </div>
+          <input id="threshold" type="range" min="50" max="99" value="82">
+          <div class="range-hint"><span>More matches</span><span>More strict</span></div>
+        </div>
+
+        <button id="analyzeBtn" class="analyze-btn" disabled>
+          <span>Run duplicate scan</span><span>→</span>
+        </button>
+        <div id="status" class="status"></div>
+      </aside>
+
+      <section class="results-panel">
+        <div class="results-head">
+          <div>
+            <div class="eyebrow">SCAN CONSOLE</div>
+            <h2>Record overview</h2>
+          </div>
+          <div id="filenameBadge" class="file-badge">No file loaded</div>
+        </div>
+
+        <div class="metrics">
+          <div class="metric-card neutral"><span>INPUT ROWS</span><strong id="mRows">—</strong><small>records scanned</small></div>
+          <div class="metric-card exact"><span>EXACT PAIRS</span><strong id="mExact">—</strong><small>same normalized values</small></div>
+          <div class="metric-card potential"><span>POTENTIAL PAIRS</span><strong id="mPotential">—</strong><small>fuzzy similarity</small></div>
+          <div class="metric-card cleaned"><span>ROWS REMOVED</span><strong id="mRemoved">—</strong><small>exact duplicates only</small></div>
+        </div>
+
+        <div id="emptyState" class="empty-state">
+          <div class="empty-illustration">
+            <div class="record record-back"></div>
+            <div class="record record-front"></div>
+            <div class="scan-line"></div>
+          </div>
+          <h3>Your scan results will appear here</h3>
+          <p>Exact matches are grouped first. Near-duplicates are reported separately so uncertain records stay available for human review.</p>
+        </div>
+
+        <div id="results" class="results hidden">
+          <div class="result-block">
+            <div class="block-head">
+              <div><span class="dot exact-dot"></span><strong>Exact duplicate report</strong><small>Normalized values match</small></div>
+              <a id="exactDownload" class="download" href="#">Download CSV ↓</a>
+            </div>
+            <div id="exactTable" class="table-wrap"></div>
+          </div>
+
+          <div class="result-block">
+            <div class="block-head">
+              <div><span class="dot potential-dot"></span><strong>Potential duplicate report</strong><small>Fuzzy similarity above threshold</small></div>
+              <a id="potentialDownload" class="download" href="#">Download CSV ↓</a>
+            </div>
+            <div id="potentialTable" class="table-wrap"></div>
+          </div>
+
+          <div class="result-block cleaned-block">
+            <div class="block-head">
+              <div><span class="dot cleaned-dot"></span><strong>Cleaned dataset</strong><small>First row of each exact group retained</small></div>
+              <a id="cleanedDownload" class="download" href="#">Download CSV ↓</a>
+            </div>
+            <div id="cleanedTable" class="table-wrap"></div>
+          </div>
+
+          <div class="method-note">
+            <strong>Matching note</strong>
+            <span id="methodText"></span>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer>
+    <span>Python • Pandas • difflib fuzzy matching</span>
+    <span>MatchLens local analysis • No automatic deletion</span>
+  </footer>
+</div>
+<script src="/app.js"></script>
+</body>
+</html>

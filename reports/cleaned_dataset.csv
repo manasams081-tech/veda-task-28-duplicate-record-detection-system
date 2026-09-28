@@ -1,0 +1,11 @@
+customer_id,name,email,phone,city,amount
+C001,Ananya Rao,ananya.rao@example.com,+91 98765 43210,Bengaluru,1299
+C002,Rahul Sharma,rahul.sharma@example.com,+91 99887 77665,Mysuru,2499
+C004,Sneha Kulkarni,sneha.k@example.com,+91 91234 56780,Pune,1799
+C005,Rahul Sharm,rahul.sharma@example.com,+91 99887 77665,Mysore,2499
+C006,Arjun Nair,arjun.nair@example.com,+91 90123 45678,Kochi,899
+C007,Meera Iyer,meera.iyer@example.com,+91 93456 78901,Chennai,1599
+C008,Meera Aiyar,meera.iyer@example.com,+91 93456 78901,Chennai,1599
+C009,Vikram Singh,vikram.singh@example.com,+91 88990 11223,Delhi,3199
+C011,Neha Patil,neha.patil@example.com,+91 87654 32109,Mumbai,1099
+C012,Naveen Patil,naveen.patil@example.com,+91 87654 32119,Mumbai,1099
